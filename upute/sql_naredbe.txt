@@ -1,0 +1,55 @@
+Upute za sql u slučaju da se napad ne može izvršiti na hostingu.
+
+CREATE TABLE users(
+   	user_id serial primary key,
+	username text,
+	user_email text
+);
+
+CREATE TABLE realestate(
+   	estate_id serial primary key,
+	user_id int,
+	estate_type text,
+	address text,
+	value int,
+	foreign key(user_id) references users(user_id)
+);
+
+CREATE TABLE session_token(
+   	id serial primary key,
+	session text,
+	token text
+);
+
+CREATE TABLE messages(
+   	id serial primary key,
+	sender int,
+	receiver int,
+	content text,
+	session text,
+	msg_time timestamp
+);
+
+insert into users(username, user_email)
+values('user1', 'user1@email.com');
+
+insert into users(username, user_email)
+values('user2', 'user2@email.com');
+
+insert into users(username, user_email)
+values('user3', 'user3@email.com');
+
+insert into realestate(user_id, estate_type, address, value)
+values(1, 'house', 'Unska 1, Zagreb', 100000);
+
+insert into realestate(user_id, estate_type,address, value)
+values(2, 'house', 'Unska 2, Zagreb', 200000);
+
+insert into realestate(user_id, estate_type,address, value)
+values(3, 'house', 'Unska 3, Zagreb', 300000);
+
+insert into realestate(user_id, estate_type, address, value)
+values(1, 'house', 'Unska 7, Zagreb', 100000);
+
+insert into realestate(user_id, estate_type, address, value)
+values(1, 'house', 'Unska 10, Zagreb', 100000);
