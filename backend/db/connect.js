@@ -1,8 +1,8 @@
-const { Client } = require("pg");
+const { Pool } = require("pg");
 require("dotenv").config();
 
 module.exports.getClient = async () => {
-    const client = new Client({
+    const client = new Pool({
         host: process.env.PG_HOST,
         port: process.env.PG_PORT,
         user: process.env.PG_USER,

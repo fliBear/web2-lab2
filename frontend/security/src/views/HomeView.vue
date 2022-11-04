@@ -1,13 +1,13 @@
 <template>
     <div>
-        <InjectionExample></InjectionExample>
+        <SecurityComponent></SecurityComponent>
     </div>
 </template>
 <script>
-import InjectionExample from "../components/InjectionExample.vue";
+import SecurityComponent from "../components/SecurityComponent.vue";
 export default {
     name: "HomeView",
-    components: {InjectionExample}
+    components: { SecurityComponent }
 }
 </script>
 <style lang="css">

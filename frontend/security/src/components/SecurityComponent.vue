@@ -26,7 +26,7 @@
 <script>
 import axios from "axios";
 export default {
-    name: "InjectionExample",
+    name: "SecurityComponent",
     data() {
         return {
             safeSQL: false,
