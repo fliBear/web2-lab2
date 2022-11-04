@@ -46,11 +46,11 @@ export default {
         async getRealEstates() {
             if(!this.realestateType) return;
             if(this.safeSQL) {
-                axios.get("https://backend-m1ks.onrender.com/injection/correct/" + this.realestateType, { withCredentials: true }).then((response) => {
+                axios.get("http://localhost:3000/injection/correct/" + this.realestateType, { withCredentials: true }).then((response) => {
                     this.setRealestateData(response.data);
                 });
             } else {
-                axios.get("https://backend-m1ks.onrender.com/injection/wrong/" + this.realestateType, { withCredentials: true }).then((response) => {
+                axios.get("http://localhost:3000/injection/wrong/" + this.realestateType, { withCredentials: true }).then((response) => {
                     this.setRealestateData(response.data);
                 });
             }
@@ -59,7 +59,7 @@ export default {
             this.realestateData = data
         },
         getMessages() {
-            axios.get("https://backend-m1ks.onrender.com/csrf/messages", { withCredentials: true }).then((response) => {
+            axios.get("http://localhost:3000/csrf/messages", { withCredentials: true }).then((response) => {
                 this.messages = null;
                 setTimeout(() => {
                     this.messages = response.data
@@ -69,22 +69,22 @@ export default {
         async toggleCsrf() {
             this.safeCsrf = !this.safeCsrf;
             if(this.safeCsrf) {
-                const res = await axios.get("https://backend-m1ks.onrender.com/csrf/set-token",
+                const res = await axios.get("http://localhost:3000/csrf/set-token",
                     { withCredentials: true }).then((response) => {
                         this.token = response.data
                     });
             } else {
                 this.token = null;
                 console.log("reseting");
-                await axios.post("https://backend-m1ks.onrender.com/csrf/reset-token", {}, { withCredentials: true });
+                await axios.post("http://localhost:3000/csrf/reset-token", {}, { withCredentials: true });
             }
         },
         async resetData() {
-            await axios.get("https://backend-m1ks.onrender.com/csrf/reset-db", { withCredentials: true });
+            await axios.get("http://localhost:3000/csrf/reset-db", { withCredentials: true });
         },
         async dangerousActionMadeSafe() {
             if(this.token === null) return;
-            await axios.get("https://backend-m1ks.onrender.com/csrf/dangerous/" + this.token, { withCredentials: true });
+            await axios.get("http://localhost:3000/csrf/dangerous/" + this.token, { withCredentials: true });
         }
     },
     computed: {
@@ -99,7 +99,7 @@ export default {
             if (this.safeSQL) {
                 return "CSRF onemogućen";
             } else {
-                return "CSRF omogućen";
+                return "CSRF omogućena";
             }
         }
     },
