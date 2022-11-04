@@ -3,6 +3,7 @@ const router = express.Router();
 const { getClient } = require("../db/connect.js");
 
 router.get("/wrong/:type", async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
     const query = `SELECT * FROM realestate WHERE user_id = 1 and estate_type = '${req.params.type}'`;
 
@@ -18,6 +19,7 @@ router.get("/wrong/:type", async (req, res, next) => {
 });
 
 router.get("/correct/:type", async (req, res, next) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
 
     //User is always user 1

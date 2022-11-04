@@ -8,6 +8,7 @@ const default_user = 1;
 const default_attacker = 2;
 
 router.get("/dangerous", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
 
     //Check if session already has token
@@ -26,6 +27,7 @@ router.get("/dangerous", async (req, res) => {
 });
 
 router.get("/dangerous/:token", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
 
     //Check if session already has token
@@ -49,6 +51,7 @@ router.get("/dangerous/:token", async (req, res) => {
 });
 
 router.get("/reset-db", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
     query =
         "update realestate set user_id = $1 where user_id = $2 and estate_id in (select estate_id from realestate where user_id = $2 limit (select count(*) - 1 from realestate where user_id = $2))";
@@ -57,6 +60,7 @@ router.get("/reset-db", async (req, res) => {
 });
 
 router.post("/reset-token", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const client = await getClient();
     console.log(req.sessionID);
     const query = "delete from session_token where session=$1";
@@ -65,6 +69,7 @@ router.post("/reset-token", async (req, res) => {
 });
 
 router.get("/messages", async (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT);
     const attackMsg =
         '<img/ src="http://localhost:3000/csrf/dangerous"> Pokušaj napada izvršen';
     res.status(200).send(attackMsg);
