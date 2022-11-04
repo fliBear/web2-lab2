@@ -4,7 +4,10 @@ const csrfRouter = require("./routes/csrf.js");
 const cors = require("cors");
 var cookieParser = require("cookie-parser");
 const session = require("express-session");
+const { dbSetup } = require("./db/dpSetup.js");
 require("dotenv").config();
+
+dbSetup();
 
 const app = express();
 const PORT = 3000;

@@ -21,15 +21,6 @@ CREATE TABLE session_token(
 	token text
 );
 
-CREATE TABLE messages(
-   	id serial primary key,
-	sender int,
-	receiver int,
-	content text,
-	session text,
-	msg_time timestamp
-);
-
 insert into users(username, user_email)
 values('user1', 'user1@email.com');
 
